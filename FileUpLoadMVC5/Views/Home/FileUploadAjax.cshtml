@@ -1,0 +1,39 @@
+﻿
+@{
+    ViewBag.Title = "FileUploadAjax";
+}
+<script src="~/Scripts/jquery-3.4.1.js"></script>
+<script src="~/Assets/Site.js"></script>
+<h2>FileUploadAjax</h2>
+
+@using (Html.BeginForm("FileUpload", "Home", FormMethod.Post, new { @enctype = "multipart/form-data" }))
+{
+    <input type="file" name="file" id="file-input" multiple />
+    <br />
+//    <button type="submit"> Submit</button>
+}
+
+<script>
+    var files;
+    var fdata = new FormData();
+    $("#file-input").on("change", function (e) {
+        files = this.files;
+        $.each(files, function (i, file) {
+            fdata.append("file" + i, file);
+        });
+        console.log(fdata);
+        $.ajax({
+            url: "/Home/FileUploadAjax",
+            type: "post",
+            data: fdata, //add the FormData object to the data parameter
+            processData: false, //tell jquery not to process data
+            contentType: false, //tell jquery not to set content-type
+            success: function (response, status, jqxhr) {
+                //handle success
+            },
+            error: function (jqxhr, status, errorMessage) {
+                //handle error
+            }
+        });
+    });
+</script>

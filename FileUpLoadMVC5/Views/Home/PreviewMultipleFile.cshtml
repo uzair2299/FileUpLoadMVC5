@@ -1,0 +1,29 @@
+﻿
+@{
+    ViewBag.Title = "PreviewMultipleFile";
+}
+<script src="~/Scripts/jquery-3.4.1.js"></script>
+<script src="~/Assets/Site.js"></script>
+<style>
+    #gallery {
+        display: flex;
+    }
+
+        #gallery img {
+            width: 85px;
+            height: 85px;
+            border-radius: 10px;
+            box-shadow: 0 0 8px rgba(0,0,0,0.2);
+            opacity: 85%;
+        }
+</style>
+<h2>PreviewMultipleFile</h2>
+<div class="text-center mb-3" id="gallery">
+
+</div>
+
+@using (Html.BeginForm("FileUpload", "Home", FormMethod.Post, new { @enctype = "multipart/form-data" }))
+{
+    <input type="file" name="file" multiple id="imgfile" onchange="readURLMultiple(this)" />
+    <br />
+}

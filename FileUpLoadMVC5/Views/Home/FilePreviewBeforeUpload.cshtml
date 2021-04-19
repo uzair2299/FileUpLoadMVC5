@@ -1,0 +1,28 @@
+﻿
+@{
+    ViewBag.Title = "FilePreviewBeforeUpload";
+}
+<script src="~/Scripts/jquery-3.4.1.js"></script>
+<script src="~/Assets/Site.js"></script>
+<h2>FilePreviewBeforeUpload</h2>
+
+<div class="text-center mb-3">
+    <img class="rounded img-thumbnail" alt="Image Preview" id="ImagePreview" style="display:none;margin:0 auto" height=350 width="350">
+</div>
+
+@using (Html.BeginForm("FileUpload", "Home", FormMethod.Post, new { @enctype = "multipart/form-data" }))
+{
+
+    <span>Method 1 </span>
+    <input type="file" name="file" id="filePreview" onchange="showImage(event);" />
+    
+    <span>Method 2 </span>
+    <input type="file" name="file" id="filePreview" onchange="readURL(this);" />
+
+    <br />
+    <button type="submit"> Submit</button>
+}
+
+<script>
+
+</script>
